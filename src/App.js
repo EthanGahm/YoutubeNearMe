@@ -1,23 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import key from "./YoutubeAPIKey";
+import VideoForm from "./Components/VideoForm";
+import Header from "./Components/Header";
 
 function App() {
+  const openVideo = (lat, lon, rad, sort = "viewCount") => {
+    const API_URL =
+      "https://youtube.googleapis.com/youtube/v3/search?part=snippet" +
+      "&location=" +
+      lat +
+      "%2C" +
+      lon +
+      "&locationRadius=" +
+      rad +
+      "mi" +
+      "&maxResults=1" +
+      "&order=" +
+      sort +
+      "&type=video" +
+      "&key=" +
+      key;
+
+    axios
+      .get(API_URL)
+      .then((res) => {
+        if (res.data.items.length > 0) {
+          let videoID = res.data.items[0].id.videoId;
+          let videoURL = "https://www.youtube.com/watch?v=" + videoID;
+          window.open(videoURL, "_blank");
+        } else {
+          alert(
+            "No videos within " +
+              rad.toString() +
+              " miles of location (" +
+              lat.toString() +
+              ", " +
+              lon.toString() +
+              ")."
+          );
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Header />
+      <VideoForm onFind={openVideo} />
     </div>
   );
 }
