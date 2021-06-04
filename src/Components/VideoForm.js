@@ -1,8 +1,6 @@
 import { useState } from "react";
 
-const FindVideo = ({ onFind }) => {
-  const [lat, setLat] = useState();
-  const [lon, setLon] = useState();
+const FindVideo = ({ onFind, lat, lng, changeLat, changeLng }) => {
   const [rad, setRad] = useState(5);
 
   const onSubmit = (e) => {
@@ -10,17 +8,17 @@ const FindVideo = ({ onFind }) => {
 
     if (
       !lat ||
-      !lon ||
+      !lng ||
       isNaN(lat) ||
-      isNaN(lon) ||
+      isNaN(lng) ||
       Math.abs(parseFloat(lat)) > 90 ||
-      Math.abs(parseFloat(lon)) > 180
+      Math.abs(parseFloat(lng)) > 180
     ) {
       alert("Invalid parameters!");
       return;
     }
 
-    onFind(lat, lon, rad);
+    onFind(lat, lng, rad);
   };
 
   return (
@@ -31,7 +29,7 @@ const FindVideo = ({ onFind }) => {
           type="text"
           placeholder="Enter Latitude"
           value={lat}
-          onChange={(e) => setLat(e.target.value)}
+          onChange={(e) => changeLat(e.target.value)}
         />
       </div>
       <div className="form-control">
@@ -39,8 +37,8 @@ const FindVideo = ({ onFind }) => {
         <input
           type="text"
           placeholder="Enter Longitude"
-          value={lon}
-          onChange={(e) => setLon(e.target.value)}
+          value={lng}
+          onSubmit={(e) => changeLng(e.target.value)}
         />
       </div>
       <div className="form-control">

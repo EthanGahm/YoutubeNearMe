@@ -1,9 +1,20 @@
+import React from "react";
 import axios from "axios";
-import key from "./YoutubeAPIKey";
 import VideoForm from "./Components/VideoForm";
 import Header from "./Components/Header";
+import Map from "./Components/Map";
+
+const { REACT_APP_APIKEY } = process.env;
+
+const initialPinLocation = {
+  lat: 38.0336,
+  lng: -78.508,
+};
 
 function App() {
+  const [pinLat, setPinLat] = React.useState(initialPinLocation.lat);
+  const [pinLng, setPinLng] = React.useState(initialPinLocation.lng);
+
   const openVideo = (lat, lon, rad, sort = "viewCount") => {
     const API_URL =
       "https://youtube.googleapis.com/youtube/v3/search?part=snippet" +
@@ -19,7 +30,7 @@ function App() {
       sort +
       "&type=video" +
       "&key=" +
-      key;
+      REACT_APP_APIKEY;
 
     axios
       .get(API_URL)
@@ -43,10 +54,36 @@ function App() {
       .catch((err) => console.error(err));
   };
 
+  const setPinLocation = (lat, lng) => {
+    setPinLat(lat);
+    setPinLng(lng);
+  };
+
+  const changeLat = (lat) => {
+    setPinLat(parseFloat(lat));
+  };
+
+  const changeLng = (lng) => {
+    setPinLng(parseFloat(lng));
+  };
+
   return (
     <div className="container">
       <Header />
-      <VideoForm onFind={openVideo} />
+      <Map
+        initialCenter={initialPinLocation}
+        onClick={setPinLocation}
+        pinLat={pinLat}
+        pinLng={pinLng}
+        zoomLevel={0}
+      />
+      <VideoForm
+        onFind={openVideo}
+        lat={pinLat}
+        lng={pinLng}
+        changeLat={changeLat}
+        changeLng={changeLng}
+      />
     </div>
   );
 }
