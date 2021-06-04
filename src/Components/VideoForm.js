@@ -38,7 +38,7 @@ const FindVideo = ({ onFind, lat, lng, changeLat, changeLng }) => {
           type="text"
           placeholder="Enter Longitude"
           value={lng}
-          onSubmit={(e) => changeLng(e.target.value)}
+          onChange={(e) => changeLng(e.target.value)}
         />
       </div>
       <div className="form-control">
