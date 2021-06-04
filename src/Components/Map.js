@@ -30,6 +30,7 @@ const Map = ({ initialCenter, pinLat, pinLng, zoomLevel, onClick }) => {
           defaultCenter={initialCenter}
           defaultZoom={zoomLevel}
           onClick={_onClick}
+          options={{ fullscreenControl: false }}
         >
           <LocationPin lat={pinLat} lng={pinLng} />
         </GoogleMapReact>

@@ -23,7 +23,7 @@ body {
 .header {
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .button {
@@ -71,9 +71,10 @@ body {
 
 .map-h2 {
   font-size: 1rem;
-  padding: 20px;
+  padding: 10px;
   padding-left: 10px;
   text-align: center;
+  font-family: inherit;
 }
 
 .google-map {
