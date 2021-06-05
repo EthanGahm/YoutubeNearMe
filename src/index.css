@@ -109,7 +109,7 @@ body {
 
   .pin {
     display: flex;
-    width: 5vw;
+    width: 40px;
   }
 
   .pin-icon {
