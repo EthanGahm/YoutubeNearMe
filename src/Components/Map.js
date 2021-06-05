@@ -21,7 +21,7 @@ const Map = ({ initialCenter, pinLat, pinLng, zoomLevel, onClick }) => {
   };
 
   return (
-    <div className="map">
+    <div>
       <h2 className="map-h2">Choose Location</h2>
 
       <div className="google-map">
