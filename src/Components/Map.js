@@ -4,10 +4,7 @@ import { Icon } from "@iconify/react";
 import locationIcon from "@iconify/icons-mdi/map-marker";
 
 const LocationPin = ({ text }) => (
-  <div
-    className="pin"
-    style={{ position: "absolute", transform: "translate(-50%, -71%)" }}
-  >
+  <div style={{ position: "absolute", transform: "translate(-50%, -90%)" }}>
     <Icon icon={locationIcon} className="pin-icon" />
     <p className="pin-text">{text}</p>
   </div>

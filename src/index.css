@@ -78,43 +78,16 @@ body {
 }
 
 .google-map {
-  width: 100%;
-  height: 100vh;
+  height: 40vh;
 }
 
-.pin {
-  display: flex;
-  align-items: center;
-  width: 60px;
-  color: var(--main-blue);
+.map-h2 {
+  font-size: 1.3rem;
+  font-weight: 400;
 }
 
 .pin-icon {
-  font-size: 4rem;
-}
-
-.pin-text {
-  font-size: 1.3em;
-}
-
-@media screen and (min-width: 799px) {
-  .google-map {
-    height: 40vh;
-  }
-
-  .map-h2 {
-    font-size: 1.3rem;
-    font-weight: 400;
-  }
-
-  .pin {
-    display: flex;
-    width: 40px;
-  }
-
-  .pin-icon {
-    font-size: 10vw;
-  }
+  font-size: 40px;
 }
 
 footer {
